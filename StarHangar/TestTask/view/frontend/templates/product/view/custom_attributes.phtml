@@ -1,0 +1,31 @@
+<?php
+
+declare(strict_types=1);
+/**
+ * Product additional attributes template
+ *
+ */
+
+/** @var \Magento\Catalog\Block\Product\View\Attributes $block */
+$viewModel = $block->getData('viewModel');
+$_product = $block->getProduct();
+
+
+$attributes = [
+    'insurance' => 'Insurance',
+    'ship' => 'Shipping',
+];
+
+?>
+
+<div class="main-wrapper-brand">
+    <?php if ($_product !== null): ?>
+        <?php foreach ($attributes as $attributeCode => $label): ?>
+            <?php $selectedOption = $viewModel->getSelectedOption($_product, $attributeCode); ?>
+            <span class="product_attribute <?= /* @noEscape */ $attributeCode; ?>">
+                <span class="attribute_label"><?= /* @noEscape */ $label; ?>:</span>
+                <span class="attribute_value"><?= /* @noEscape */ $selectedOption; ?></span>
+            </span>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
